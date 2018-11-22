@@ -18,9 +18,14 @@ $nome = $c['nome'];
 $data_nasc = $c['data_nasc'];
 $email = $c['email'];
 $celular = $c['celular'];
-$mandioca = $c['mandioca'];
+$cidade = $c['cidade'];
 $cep = $c['cep'];
 $sexo = $c['sexo'];
+$mandioca = $c['mandioca'];
+$planta = $c['planta'];
+$planta2 = $c['planta2'];
+$solo = $c['solo'];
+$raiz = $c['raiz'];
 $mensagem = $c['mensagem'];
 
 

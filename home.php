@@ -1,27 +1,21 @@
 <center>
-<h1>Curso Virtual para aprender PHP e Banco de Dados(BD) completo</h1>
-    <h3>Neste curso você aprenderar do basico ao mais complexo sobre bando de dados e PHP.</h3>
-
- <h2>Mais afinal o que é um banco de dados e PHP?</h2>
- 
+<h1>Diminuindo os risco de investimentos e produçao</h1><br><br>
+   
 
 <div class="container-fluid">
             <div class="row">
                 
         <div class="col-sm-6">
-                <h2 align="center">PHP</h2><br>
-                <p>É uma das linguagens de programação mais utilizadas para desenvolvimentos de Web.</p>
-                <p>Ela usa códigos reduzidos para facilitar a programação de um desenvolvedor,</p>
-                <p>ao invés de outras linguagens que utiliza muitos código para uma unica instrução.</p>
-               <img src="img/3.png"height="400" width="600"/>
+                <h2 align="center">Aumentando a produtividade e sanidade das plantas.</h2><br>
+                <p>Através de uma indexação você encontra a melhor maniva e variaedade de mandioca, o que irá te auxilar a porduzir com qualidade diminuindo os riscos de perca. </p>
+               <img src="img/3.jpg"height="400" widt="600"/>
                 </div>
                 
                 
         <div class="col-sm-5">
-                <h2 align="center">Banco de dados</h2><br>
-            <p>Banco de dados como o próprio nome diz, é um banco aonde guarda diferentes tipos de dados que pode ser associado com o PHP, por exemplo: Listas telefônicas, Lista de funcionários(guardam salários e todos tipos de informação),etc. </p>
-            <p>Nesse banco pode ter varias tabelas tendo relação uma com a outra, e a parte visual dela pode ser acessadas por qualquer pessoa que tenha pouco conhecimento.</p>
-            <img src="img/2.png"height="400" width="600"/>
+                <h2 align="center"> Como fazer a escolha certa?</h2><br>
+            <p> Você receberá auxilio na seleção e preparo do materal ideal para o plantio, como também a seleção adequada das hastes de acordo com suas condições de produtividade, assim como a maniva ideal para a qualidade da sua produção por meio de uma avaliação personalisada através de um questionário.  </p>
+            <img src="img/2.jpg"height="400" width="600"/>
                 </div>
                 
                 
