@@ -6,7 +6,7 @@ echo "<br><h3>.:: CONSULTA ::.</h3>";
 <br>
 <?php
 
-// CHAMA CONEXAO COM BANCO MySQL  
+// CHAMA CONEXAO COM BANCO MySQL  cdfafsddfdsdsda
 include 'banco/conecta.php';
 
 
