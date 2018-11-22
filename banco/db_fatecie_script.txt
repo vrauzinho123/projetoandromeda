@@ -1,0 +1,251 @@
+
+
+### ESTADOS E CAPITAIS DO BRASIL
+https://www.estadosecapitaisdobrasil.com/
+
+### CIDADES
+https://pt.wiktionary.org/wiki/Ap%C3%AAndice:Gent%C3%ADlicos_e_top%C3%B3nimos_em_portugu%C3%AAs/Brasil#Municípios
+
+
+#-------------------------------------------------------------------------------
+### ENTIDADES
+
+
+|tb_estado| 1------* |tb_cidade|
+
+### TB_ESTADO [1]
+create table tb_estado(
+    id_estado int(11) not null auto_increment primary key,
+    estado varchar(50),
+    sigla char(2),
+    regiao varchar(15)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+### TB_CIDADE [*]
+create table tb_cidade(
+    id_cidade int(11) not null auto_increment primary key,
+    cidade varchar(150),
+    capital enum('m','c') default 'm',  -- m:Municipio / c:Capital 
+
+    cid_id_estado int(11) not null,
+    foreign key (cid_id_estado) references tb_estado (id_estado)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+#-------------------------------------------------------------------------------
+### INSERIR ESTADO
+
+insert into tb_estado 
+(id_estado, estado, sigla, regiao)
+values
+(null, 'Acre', 'AC', 'Norte'),
+(null, 'Alagoas', 'AL', 'Nordeste'),
+(null, 'Bahia', 'BA', 'Nordeste'),
+(null, 'Goiás', 'GO', 'Centro-Oeste'),
+(null, 'Mato Grosso do Sul', 'MS', 'Centro-Oeste'),
+(null, 'Paraná', 'PR', 'Sul'),
+(null, 'Santa Catarina', 'SC', 'Sul'),
+(null, 'São Paulo', 'SP', 'Sudeste'),
+(null, 'Tocantins', 'TO', 'Norte')
+;
+
+
+
+#-------------------------------------------------------------------------------
+### INSERIR MUNICIPIO
+
+
+INSERT INTO tb_cidade
+(id_cidade, cidade, capital, cid_id_estado)
+VALUES
+(null, 'Capixaba', 'm', 1),
+(null, 'Rio Branco', 'c', 1),
+(null, 'Jordão', 'm', 1),
+(null, 'Maceió', 'c', 2),
+(null, 'Belo Monte', 'm', 2),
+(null, 'Capela', 'm', 2),
+(null, 'Craibras', 'm', 2),
+(null, 'Salvados', 'c', 3),
+(null, 'Anguera', 'm', 3),
+(null, 'Barra', 'm', 3),
+(null, 'Boa Nova', 'm', 3),
+(null, 'Caculé', 'm', 3),
+(null, 'Glória', 'm', 3),
+(null, 'Goiânia', 'c', 4),
+(null, 'Bonópolis', 'm', 4),
+(null, 'Caçu', 'm', 4),
+(null, 'Formoso', 'm', 4),
+(null, 'Campo Grande', 'c', 5),
+(null, 'Bonito', 'm', 5),
+(null, 'Corguinho', 'm', 5),
+(null, 'Dourados', 'm', 5),
+(null, 'Curitiba', 'c', 6),
+(null, 'Paranavaí', 'm', 6),
+(null, 'Maringá', 'm', 6),
+(null, 'Londrina', 'm', 6),
+(null, 'Tambuara', 'm', 6),
+(null, 'Paraiso do Norte', 'm', 6),
+(null, 'Terra Rica', 'm', 6),
+(null, 'Loanda', 'm', 6),
+(null, 'Florianópolis', 'c', 7),
+(null, 'Anotnio Carlos', 'm', 7),
+(null, 'Águas Mornas', 'm', 7),
+(null, 'Belmonte', 'm', 7),
+(null, 'Brusque', 'm', 7),
+(null, 'Camboriú', 'm', 7),
+(null, 'São Paulo', 'c', 8),
+(null, 'Altair', 'm', 8),
+(null, 'Aparecida', 'm', 8),
+(null, 'Bauru', 'm', 8),
+(null, 'Campos do Jordão', 'm', 8),
+(null, 'Dracena', 'm', 8),
+(null, 'Palmas', 'c', 9),
+(null, 'Ananás', 'm', 9),
+(null, 'Arraias', 'm', 9),
+(null, 'Gurupi', 'm', 9),
+(null, 'Sucupira', 'm', 9)
+;
+
+
+
+
+#----------------------------------------------------------------------
+### RELATORIOS
+
+
+|tb_estado| 1------* |tb_cidade|
+
+
+mysql> describe tb_estado;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id_estado | int(11)     | NO   | PRI | NULL    | auto_increment |
+| estado    | varchar(50) | YES  |     | NULL    |                |
+| sigla     | char(2)     | YES  |     | NULL    |                |
+| regiao    | varchar(15) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+
+
+mysql> describe tb_cidade;
++---------------+---------------+------+-----+---------+----------------+
+| Field         | Type          | Null | Key | Default | Extra          |
++---------------+---------------+------+-----+---------+----------------+
+| id_cidade     | int(11)       | NO   | PRI | NULL    | auto_increment |
+| cidade        | varchar(150)  | YES  |     | NULL    |                |
+| capital       | enum('m','c') | YES  |     | m       |                |
+| cid_id_estado | int(11)       | NO   | MUL | NULL    |                |
++---------------+---------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+
+
+### ESTADOS
+mysql> select * from tb_estado;
+
+select *
+from tb_estado
+order by estado;
+
+
+select *
+from tb_estado
+order by regiao asc, estado asc;
+
+
+
+### CIDADES
+mysql> select * from tb_cidade;
+
+select *
+from tb_cidade
+where capital='c'
+order by cidade;
+
+
+### CRUZAMENTO DE TABELAS
+
+# REGIAO - ESTADO - SIGLA - CIDADE(TODAS)
+
+SELECT E.regiao, E.estado, E.sigla, C.cidade
+FROM tb_estado  E, tb_cidade C
+WHERE E.id_estado = C.cid_id_estado
+ORDER BY 
+    E.regiao asc,
+    E.estado asc,
+    C.cidade asc;
+
+
+
+# REGIAO - ESTADO - SIGLA - CIDADE(CAPITAL)
+
+SELECT E.regiao, E.estado, E.sigla, C.cidade
+FROM tb_estado  E, tb_cidade C
+WHERE E.id_estado = C.cid_id_estado
+AND C.capital = 'c'
+ORDER BY 
+    E.regiao asc,
+    E.estado asc,
+    C.cidade asc;
+
+
+
+# ESCOLHER UMA REGIAO
+# REGIAO - ESTADO - SIGLA - CIDADE(TODAS)
+
+
+mysql> select id_estado, estado from tb_estado;
++-----------+--------------------+
+| id_estado | estado             |
++-----------+--------------------+
+|         1 | Acre               |
+|         2 | Alagoas            |
+|         3 | Bahia              |
+|         4 | Goiás              |
+|         5 | Mato Grosso do Sul |
+|         6 | Paraná             |
+|         7 | Santa Catarina     |
+|         8 | São Paulo          |
+|         9 | Tocantins          |
++-----------+--------------------+
+9 rows in set (0.00 sec)
+
+
+
+SELECT E.regiao, E.estado, E.sigla, C.cidade, C.capital
+FROM tb_estado  E, tb_cidade C
+WHERE E.id_estado = C.cid_id_estado
+AND E.id_estado = 7
+ORDER BY 
+    E.regiao asc,
+    E.estado asc,
+    C.cidade asc;
+
+
+
+#-------------------------------------------------------------------------------
+### BANCO DE TESTE
+
+
+### TESTE
+create table teste (
+id_teste int(11) not null auto_increment primary key,
+nome varchar(100),
+valor int(11)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
+
+INSERT INTO teste (id_teste, nome, valor)
+VALUES
+('null', 'mauro', '29'),
+('null', 'hudson', '39'),
+('null', 'cíntia', '17'),
+('null', 'valência', '23')
+;
+
+
+
